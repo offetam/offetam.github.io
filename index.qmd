@@ -1,5 +1,6 @@
 ---
-title: "etam1234.github.io"
+title: "offetam.github.io"
+theme: darkly
 ---
 
 This is a Quarto website.

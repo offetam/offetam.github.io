@@ -1,10 +1,24 @@
 [
   {
+    "objectID": "posts/TidyTuesday/date_here.html",
+    "href": "posts/TidyTuesday/date_here.html",
+    "title": "My Post",
+    "section": "",
+    "text": "Day 1."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "etam1234.github.io",
+    "title": "offetam.github.io",
     "section": "",
     "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "myblog",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nMy Post\n\n\n\nnews\n\n\nanalysis\n\n\n\nPost description here\n\n\n\nTesty Zesty\n\n\nMay 23, 2021\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",

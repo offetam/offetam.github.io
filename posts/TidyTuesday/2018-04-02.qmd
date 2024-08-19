@@ -16,6 +16,8 @@ categories:
 Imported the data below:
 
 ```{r}
+library(tidyverse)
+
 
 avg_us_tuition <- read.csv("datasets/us_avg_tuition.csv")
 head(avg_us_tuition)

@@ -1,3 +1,38 @@
 ---
-title: "2018-04-02 (Tidy Tuesday)"
+title: "Tidy Tuesday - US Avg. Tuition (2018-04-02)"
+description: "Discussing and making some visualizations on US Avg. Tuition"
+author: "Ethan Tam"
+date: "8/18/2024"
+image: ../images/college-library.jpg
+categories:
+  - tidytuesday
+  - analysis
 ---
+
+*Note that the date following the post title is from when the dataset was added to* [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday).
+
+![](..\images\college-library.jpg)
+
+Imported the data below:
+
+```{r}
+library(tidyverse)
+library(tidyselect)
+library(readr)
+library(ggplot2)
+
+avg_us_tuition <- read.csv("datasets/us_avg_tuition.csv")
+head(avg_us_tuition)
+```
+
+Things you could do with this kind of data:
+
+-   Have a US country chart with the cost of tuition scaled by color (source has done this)
+    -   This could also be interactive to see by year if possible
+-   Compare the table with collegeboard data (which had more recent data as well)
+    -   Collegeboard has data that also has tables adjusted for inflation (as of 2023) which is really cool
+    -   I think it could be an interesting conversion to also make for the tidy tuesday dataset, since we don't have that (use a line graph for this maybe?)
+-   Interactive table/viz comparing states with each other
+-   Line graph also comparing states (interactive); 50 states would be too much maybe?
+
+Next, I should decide which are simpler graphs for me to do.

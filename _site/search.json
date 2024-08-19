@@ -1,10 +1,17 @@
 [
   {
+    "objectID": "posts/TidyTuesday/date_here.html",
+    "href": "posts/TidyTuesday/date_here.html",
+    "title": "My 1",
+    "section": "",
+    "text": "Day 1."
+  },
+  {
     "objectID": "blog.html",
     "href": "blog.html",
     "title": "myblog",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nMy Post\n\n\n\nnews\n\n\nanalysis\n\n\n\nPost description here\n\n\n\nTesty Zesty\n\n\nMay 23, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nMy Post\n\n\n\nnews\n\n\nanalysis\n\n\n\nPost description\n\n\n\nTesty McPhee\n\n\nMay 22, 2021\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nTidy Tuesday - US Avg. Tuition (2018-04-02)\n\n\n\ntidytuesday\n\n\nanalysis\n\n\n\nDiscussing and making some visualizations on US Avg. Tuition\n\n\n\nEthan Tam\n\n\nAug 18, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nMy 1\n\n\n\nnews\n\n\n\nPost description here\n\n\n\nTesty Zesty\n\n\nMay 23, 2021\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -16,15 +23,15 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "offetam.github.io",
+    "title": "Welcome!",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "Source: Miguel Á. Padriñán\n\n\nI will be using quarto as the website to share any data visualizations I make, typically through blog posts. You can find those posts on the header above or here.\nThe plan is to eventually use the main page for notes and exercises on the R4DS book."
   },
   {
-    "objectID": "posts/TidyTuesday/date_here.html",
-    "href": "posts/TidyTuesday/date_here.html",
-    "title": "My Post",
+    "objectID": "posts/TidyTuesday/2018-04-02.html",
+    "href": "posts/TidyTuesday/2018-04-02.html",
+    "title": "Tidy Tuesday - US Avg. Tuition (2018-04-02)",
     "section": "",
-    "text": "Day 1."
+    "text": "Note that the date following the post title is from when the dataset was added to Tidy Tuesday.\n\nImported the data below:\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(tidyselect)\nlibrary(readr)\nlibrary(ggplot2)\n\navg_us_tuition &lt;- read.csv(\"datasets/us_avg_tuition.csv\")\nhead(avg_us_tuition)\n\n       State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11\n1    Alabama   $5,683   $5,841   $5,753   $6,008   $6,475   $7,189   $8,071\n2     Alaska   $4,328   $4,633   $4,919   $5,070   $5,075   $5,455   $5,759\n3    Arizona   $5,138   $5,416   $5,481   $5,682   $6,058   $7,263   $8,840\n4   Arkansas   $5,772   $6,082   $6,232   $6,415   $6,417   $6,627   $6,901\n5 California   $5,286   $5,528   $5,335   $5,672   $5,898   $7,259   $8,194\n6   Colorado   $4,704   $5,407   $5,596   $6,227   $6,284   $6,948   $7,748\n  X2011.12 X2012.13 X2013.14 X2014.15 X2015.16\n1   $8,452   $9,098   $9,359   $9,496   $9,751\n2   $5,762   $6,026   $6,012   $6,149   $6,571\n3   $9,967  $10,134  $10,296  $10,414  $10,646\n4   $7,029   $7,287   $7,408   $7,606   $7,867\n5   $9,436   $9,361   $9,274   $9,187   $9,270\n6   $8,316   $8,793   $9,293   $9,299   $9,748\n\n\nThings you could do with this kind of data:\n\nHave a US country chart with the cost of tuition scaled by color (source has done this)\n\nThis could also be interactive to see by year if possible\n\nCompare the table with collegeboard data (which had more recent data as well)\n\nCollegeboard has data that also has tables adjusted for inflation (as of 2023) which is really cool\nI think it could be an interesting conversion to also make for the tidy tuesday dataset, since we don’t have that (use a line graph for this maybe?)\n\nInteractive table/viz comparing states with each other\nLine graph also comparing states (interactive), 50 states would be too much maybe?"
   }
 ]

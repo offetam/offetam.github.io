@@ -1,11 +1,10 @@
 ---
-title: "My Post"
+title: "My 1"
 description: "Post description here"
 author: "Testy Zesty"
 date: "5/23/2021"
 categories:
   - news
-  - analysis
 ---
 
 Day 1.

@@ -1,12 +1,10 @@
 ---
-title: "offetam.github.io"
+title: "Welcome!"
 theme: darkly
 ---
 
-This is a Quarto website.
+![Source: Miguel Á. Padriñán](posts/images/welcome.jpg){fig-align="center"}
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+I will be using quarto as the website to share any data visualizations I make, typically through blog posts. You can find those posts on the header above or [here](/blog.html).
 
-```{r}
-1 + 1
-```
+The plan is to eventually use the main page for notes and exercises on the [R4DS](https://r4ds.hadley.nz/) book.

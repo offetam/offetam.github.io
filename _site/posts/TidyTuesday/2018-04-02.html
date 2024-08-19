@@ -201,25 +201,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="..\images\college-library.jpg" class="img-fluid"></p>
 <p>Imported the data below:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyselect)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/us_avg_tuition.csv"</span>)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg_us_tuition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/us_avg_tuition.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg_us_tuition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
 1    Alabama   $5,683   $5,841   $5,753   $6,008   $6,475   $7,189   $8,071
@@ -249,8 +232,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>I think it could be an interesting conversion to also make for the tidy tuesday dataset, since we don’t have that (use a line graph for this maybe?)</li>
 </ul></li>
 <li>Interactive table/viz comparing states with each other</li>
-<li>Line graph also comparing states (interactive), 50 states would be too much maybe?</li>
+<li>Line graph also comparing states (interactive); 50 states would be too much maybe?</li>
 </ul>
+<p>Next, I should decide which are simpler graphs for me to do.</p>
 
 
 

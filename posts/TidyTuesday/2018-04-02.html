@@ -199,25 +199,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p><em>Note that the date following the post title is from when the dataset was added to</em> <a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday</a>.</p>
 <p><img src="..\images\college-library.jpg" class="img-fluid"></p>
-<p>Imported the data below:</p>
+<p>Things you could do with this kind of data:</p>
+<ul>
+<li>Have a US country chart with the cost of tuition scaled by color (source has already done this, so it would be a good learning experience)
+<ul>
+<li>This could also be interactive to see by year if possible</li>
+</ul></li>
+<li>Compare the table with collegeboard data (which had more recent data as well)
+<ul>
+<li>Collegeboard has data that also has tables adjusted for inflation (as of 2023) which is really cool</li>
+<li>I think it could be an interesting conversion to also make for the tidy tuesday dataset, since we don’t have that (use a line graph for this maybe?)</li>
+</ul></li>
+<li>Interactive table/viz comparing states with each other</li>
+<li>Line graph also comparing states (interactive); 50 states would be too much maybe?</li>
+</ul>
+<p>Next, I should decide which are simpler graphs for me to do.</p>
+<p>Imported the data below and created my first visualization:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/us_avg_tuition.csv"</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg_us_tuition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/us_avg_tuition.csv"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#reamed column from "State" to "state" as usmaps won't recognize the column otherwise.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> avg_us_tuition <span class="sc">|&gt;</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">state =</span> <span class="st">"State"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg_us_tuition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>       State X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
+<pre><code>       state X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
 1    Alabama   $5,683   $5,841   $5,753   $6,008   $6,475   $7,189   $8,071
 2     Alaska   $4,328   $4,633   $4,919   $5,070   $5,075   $5,455   $5,759
 3    Arizona   $5,138   $5,416   $5,481   $5,682   $6,058   $7,263   $8,840
@@ -233,21 +245,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6   $8,316   $8,793   $9,293   $9,299   $9,748</code></pre>
 </div>
 </div>
-<p>Things you could do with this kind of data:</p>
-<ul>
-<li>Have a US country chart with the cost of tuition scaled by color (source has done this)
-<ul>
-<li>This could also be interactive to see by year if possible</li>
-</ul></li>
-<li>Compare the table with collegeboard data (which had more recent data as well)
-<ul>
-<li>Collegeboard has data that also has tables adjusted for inflation (as of 2023) which is really cool</li>
-<li>I think it could be an interesting conversion to also make for the tidy tuesday dataset, since we don’t have that (use a line graph for this maybe?)</li>
-</ul></li>
-<li>Interactive table/viz comparing states with each other</li>
-<li>Line graph also comparing states (interactive); 50 states would be too much maybe?</li>
-</ul>
-<p>Next, I should decide which are simpler graphs for me to do.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a visualization with usmap:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>usmap<span class="sc">::</span><span class="fu">plot_usmap</span>(<span class="at">data =</span> avg_us_tuition, <span class="at">values =</span> <span class="st">"X2004.05"</span>) <span class="sc">+</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Tuitions by State in 2004-2005"</span>, <span class="at">subtitle =</span> <span class="st">"This data is from #the tidy tuesday dataset which consists of multiple years (2004 all the way to #2015."</span>) <span class="sc">+</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">type =</span> <span class="st">"gradient"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images\Tidy Tuesday\2018-04-02\viz1.png" class="img-fluid figure-img"></p>
+<figcaption>Image of visualization due to github errors with packages</figcaption>
+</figure>
+</div>
+<p>Some takeaways after learning to plot a US Map graph:</p>
+<ol type="1">
+<li>The package <code>usmap</code>, is very handy for visualizations referencing states and comes with ggplot2 functionality (allowing you to use ggplot functions).</li>
+<li>The package requires a “state” column (case sensitive) in order to recognize a dataframe and build off of it.</li>
+<li>Currently the visualization isn’t great because each state has its own specific key. Additionally, the colors are not consistent.</li>
+</ol>
+<p>Next steps:<br>
+Next, I should set a proper color scale for the various tuition costs to make the graph a lot cleaner.</p>
 
 
 

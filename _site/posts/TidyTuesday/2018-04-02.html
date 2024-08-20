@@ -245,7 +245,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6   $8,316   $8,793   $9,293   $9,299   $9,748</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_usmap</span>(<span class="at">data =</span> avg_us_tuition, <span class="at">values =</span> <span class="st">"X2004.05"</span>) <span class="sc">+</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Tuitions by State in 2004-2005"</span>, <span class="at">subtitle =</span> <span class="st">"This data is from the tidy tuesday dataset which consists of multiple years (2004 all the way to 2015."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Tuitions by State in 2004-2005"</span>, <span class="at">subtitle =</span> <span class="st">"This data is from the tidy tuesday dataset which consists of multiple years (2004 all the way to 2015."</span>) <span class="sc">+</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">type =</span> <span class="st">"gradient"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

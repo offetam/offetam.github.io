@@ -43,7 +43,8 @@ avg_us_tuition <- avg_us_tuition |>
 head(avg_us_tuition)
 
 plot_usmap(data = avg_us_tuition, values = "X2004.05") + 
-  labs(title = "US Tuitions by State in 2004-2005", subtitle = "This data is from the tidy tuesday dataset which consists of multiple years (2004 all the way to 2015.")
+  labs(title = "US Tuitions by State in 2004-2005", subtitle = "This data is from the tidy tuesday dataset which consists of multiple years (2004 all the way to 2015.") + 
+  scale_color_continuous(type = "gradient")
 ```
 
 Some takeaways after learning to plot a US Map graph:

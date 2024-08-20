@@ -31,7 +31,7 @@ Imported the data below and created my first visualization:
 #| warning: false
 library(tidyverse)
 library(ggplot2)
-library(usmap)
+
 
 
 avg_us_tuition <- read.csv("datasets/us_avg_tuition.csv")
@@ -41,11 +41,20 @@ avg_us_tuition <- avg_us_tuition |>
   rename(state = "State")
 
 head(avg_us_tuition)
+```
 
-plot_usmap(data = avg_us_tuition, values = "X2004.05") + 
-  labs(title = "US Tuitions by State in 2004-2005", subtitle = "This data is from the tidy tuesday dataset which consists of multiple years (2004 all the way to 2015.") + 
+```{r}       
+#| eval: false
+#| output: false
+#| warning: false
+#Making a visualization with usmap:
+
+usmap::plot_usmap(data = avg_us_tuition, values = "X2004.05") + 
+  labs(title = "US Tuitions by State in 2004-2005", subtitle = "This data is from #the tidy tuesday dataset which consists of multiple years (2004 all the way to #2015.") + 
   scale_color_continuous(type = "gradient")
 ```
+
+![Image of visualization due to github errors with packages](..\images\Tidy%20Tuesday\2018-04-02\viz1.png)
 
 Some takeaways after learning to plot a US Map graph:
 
@@ -53,5 +62,5 @@ Some takeaways after learning to plot a US Map graph:
 2.  The package requires a "state" column (case sensitive) in order to recognize a dataframe and build off of it.
 3.  Currently the visualization isn't great because each state has its own specific key. Additionally, the colors are not consistent.
 
-Next steps: \
+Next steps:\
 Next, I should set a proper color scale for the various tuition costs to make the graph a lot cleaner.

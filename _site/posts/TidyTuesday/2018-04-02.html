@@ -218,7 +218,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usmap)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/us_avg_tuition.csv"</span>)</span>
@@ -244,16 +244,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5   $9,436   $9,361   $9,274   $9,187   $9,270
 6   $8,316   $8,793   $9,293   $9,299   $9,748</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_usmap</span>(<span class="at">data =</span> avg_us_tuition, <span class="at">values =</span> <span class="st">"X2004.05"</span>) <span class="sc">+</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Tuitions by State in 2004-2005"</span>, <span class="at">subtitle =</span> <span class="st">"This data is from the tidy tuesday dataset which consists of multiple years (2004 all the way to 2015."</span>) <span class="sc">+</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">type =</span> <span class="st">"gradient"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a visualization with usmap:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>usmap<span class="sc">::</span><span class="fu">plot_usmap</span>(<span class="at">data =</span> avg_us_tuition, <span class="at">values =</span> <span class="st">"X2004.05"</span>) <span class="sc">+</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Tuitions by State in 2004-2005"</span>, <span class="at">subtitle =</span> <span class="st">"This data is from #the tidy tuesday dataset which consists of multiple years (2004 all the way to #2015."</span>) <span class="sc">+</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">type =</span> <span class="st">"gradient"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="2018-04-02_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="..\images\Tidy Tuesday\2018-04-02\viz1.png" class="img-fluid figure-img"></p>
+<figcaption>Image of visualization due to github errors with packages</figcaption>
 </figure>
-</div>
-</div>
 </div>
 <p>Some takeaways after learning to plot a US Map graph:</p>
 <ol type="1">

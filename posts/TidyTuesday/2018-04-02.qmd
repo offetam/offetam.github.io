@@ -33,6 +33,7 @@ Things you could do with this kind of data:
 Below, I imported the data below and created my first visualization:
 
 ```{r}
+
 library(tidyverse)
 library(ggplot2)
 
@@ -42,8 +43,12 @@ avg_us_tuition <- read.csv("datasets/us_avg_tuition.csv")
 avg_us_tuition <- avg_us_tuition |> 
   rename(state = "State")
 
-head(avg_us_tuition)
+#handy way to build table using knitr::kable
+knitr::kable(
+  avg_us_tuition[1:10, 1:5]
+)
 ```
+*(table columns extend to 2014-2015)*
 
 ```{r}
 #| eval: false
@@ -169,8 +174,7 @@ These 2 visualizations were quite challenging to reach too. I think that's due t
 
 1.  For one, I didn't think much about the avg tuition being a discrete variable which unsurprisingly would cause trouble with scale for the visualization. Once I realized that and properly adjust the variable to be continuous, that problem was fixed!
 2.  The other issue I had was from working on tidying up the data, after recently learning about pivoting. I recognize though the usefulness of pivoting as earlier I didn't even think about how the years would actually be more appropriate as values in a cell rather than as a column as a variable.
-3.  I also had to look up a lot of the functions for tidying up data. I'm currently taking some time to get understand the functions and arguments I used for the visualizations! 📘📘📘
-(some of those functions include `scale_fill_viridis_c` for a more colorblind friendly scale, using `scales::comma` to add commas to the scale values and of course, the `usmap` package for visualizations with a map)
+3.  I also had to look up a lot of the functions for tidying up data. I'm currently taking some time to get understand the functions and arguments I used for the visualizations! 📘📘📘 (some of those functions include `scale_fill_viridis_c` for a more colorblind friendly scale, using `scales::comma` to add commas to the scale values and of course, the `usmap` package for visualizations with a map)
 
 ## Next steps #2
 

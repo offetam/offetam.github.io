@@ -9,13 +9,18 @@ categories:
   - analysis
 ---
 
-*Note that the date following the post title is from when the dataset was added to* [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday).
+::: callout-note
+*Note that the date following the post title is from when the dataset was added to* [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday).\
+You can find the dataset I used [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2018/2018-04-02/us_avg_tuition.xlsx) (2018-04-02).
+:::
 
 ![](..\images\college-library.jpg)
 
+# Ideas for dataset
+
 Things you could do with this kind of data:
 
--   Have a US country chart with the cost of tuition scaled by color (source has already done this, so it would be a good learning experience)
+-   Have a US country chart with the cost of tuition scaled by color (source has already done this, but it would be a good learning experience anyways!)
     -   This could also be interactive to see by year if possible
 -   Compare the table with collegeboard data (which had more recent data as well)
     -   Collegeboard has data that also has tables adjusted for inflation (as of 2023) which is really cool
@@ -23,16 +28,13 @@ Things you could do with this kind of data:
 -   Interactive table/viz comparing states with each other
 -   Line graph also comparing states (interactive); 50 states would be too much maybe?
 
-Next, I should decide which are simpler graphs for me to do.
+## Visualization 1
 
-Imported the data below and created my first visualization:
+Below, I imported the data below and created my first visualization:
 
 ```{r}
-#| warning: false
 library(tidyverse)
 library(ggplot2)
-
-
 
 avg_us_tuition <- read.csv("datasets/us_avg_tuition.csv")
 
@@ -43,24 +45,135 @@ avg_us_tuition <- avg_us_tuition |>
 head(avg_us_tuition)
 ```
 
-```{r}       
+```{r}
 #| eval: false
 #| output: false
 #| warning: false
-#Making a visualization with usmap:
 
 usmap::plot_usmap(data = avg_us_tuition, values = "X2004.05") + 
-  labs(title = "US Tuitions by State in 2004-2005", subtitle = "This data is from #the tidy tuesday dataset which consists of multiple years (2004 all the way to #2015.") + 
+  labs(title = "US Tuitions by State in 2004-2005", subtitle = "This data is from the tidy tuesday dataset which consists of multiple years (2004 all the way to 2015.") + 
   scale_color_continuous(type = "gradient")
 ```
 
-![Image of visualization due to github errors with packages](..\images\Tidy%20Tuesday\2018-04-02\viz1.png)
+![Image of visualization due to github errors with packages](..\images\Tidy%20Tuesday\2018-04-02\viz1_OLD.png)
+
+### Reflection for today's visualizations
 
 Some takeaways after learning to plot a US Map graph:
 
 1.  The package `usmap`, is very handy for visualizations referencing states and comes with ggplot2 functionality (allowing you to use ggplot functions).
 2.  The package requires a "state" column (case sensitive) in order to recognize a dataframe and build off of it.
-3.  Currently the visualization isn't great because each state has its own specific key. Additionally, the colors are not consistent.
+3.  Currently the visualization isn't great because each state has its own specific key. This makes the colors all over the place.
 
-Next steps:\
-Next, I should set a proper color scale for the various tuition costs to make the graph a lot cleaner.
+::: callout-tip
+## Discrete vs Continuous
+
+R is treating the avg US tuition as a discrete variable and I don't want that! I'll need to make it continous.
+:::
+
+## Visualizations 2 & 3, Plus next steps
+
+Next, I should set a proper color scale for the various tuition costs to make the graph a lot cleaner. As you can see, it doesn't actually graph the average US tuition on a scale, so I will need to modify the values slightly to do this.
+
+That means I will
+
+1\. Need to pivot some values around (I want the year as values not variable)
+
+2\. Need to apply continuous data for the avg. tuition so that I can use the scale.
+
+I also decided to reformat the years just to have the specific start year (rathar than 2004-2005 the new format would be 2004). Below you can find the r code doing that.
+
+```{r}
+#| warning: false
+library(tidyverse)
+library(ggplot2)
+library(janitor)
+
+
+avg_us_tuition <- read.csv("datasets/us_avg_tuition.csv")
+
+#renamed column from "State" to "state" as usmaps won't recognize the column otherwise.
+avg_us_tuition <- avg_us_tuition |> 
+  rename(state = "State")
+head(avg_us_tuition)
+
+#pivot dataframe (Year is a value and not a variable)
+pivot_avg_us_tuition <- avg_us_tuition |> 
+  pivot_longer(
+    cols = !state,
+    names_to = "year",
+    values_to = "avg_tuition_cost"
+  )
+
+#removing comma (not sure if necessary)
+pivot_avg_us_tuition$avg_tuition_cost <- str_replace_all(pivot_avg_us_tuition$avg_tuition_cost, ",", "")
+ 
+#regex to mutate the values of the year to be more readable (instead of X2004-05 rename it to 2004).
+#and then make sure to save the result
+pivot_avg_us_tuition <- pivot_avg_us_tuition |> 
+  mutate(
+    year = str_extract(year, "\\d\\d\\d\\d"),
+    avg_tuition_cost = str_extract(avg_tuition_cost, "(?<=\\$).*")     
+  )
+head(pivot_avg_us_tuition)
+
+
+pivot_avg_us_tuition[3] <- lapply(pivot_avg_us_tuition[3], as.numeric)
+
+#grab the entries starting from year 2004 (to 2005)
+us_tuition_2004 <- pivot_avg_us_tuition |> 
+  filter(year == "2004") 
+
+head(us_tuition_2004)
+
+```
+
+Now that the dataset looks tidied up, next I will try to plot the usmap again:
+
+```{r}
+#| eval: false
+#| output: false
+#| warning: false
+#Making a visualization with usmap using a continuous scale:
+
+usmap::plot_usmap(data = us_tuition_2004, values = "avg_tuition_cost") +
+  labs(title = "US Tuitions by State in 2004-2005", subtitle = "This data is from the tidy tuesday dataset which consists of multiple years (2004 all the way to 2015.") + 
+  scale_color_continuous(type = "gradient", label = scales::comma) + 
+   theme(legend.position = "right")
+```
+
+![Image of visualization due to github errors with packages](..\images\Tidy%20Tuesday\2018-04-02\viz2.png)
+
+Looks great now! 😃
+
+I also learned about a colorblind friendly scale which I tried to apply in a similar visualization and I liked it a bit more than the simple gradient I have above.
+
+```{r}
+#| eval: false
+#| output: false
+#| warning: false
+
+#Making a visualization with usmap with viridis (colorblind friendly) continuous scale:
+
+ usmap::plot_usmap(data = us_tuition_2004, values = "avg_tuition_cost") + 
+   labs(title = "US Tuitions by State in 2004-2005", subtitle = "This data is from the tidy tuesday dataset which consists of multiple years") + 
+   scale_fill_viridis_c(name = "Avg. US Tuition", label = scales::comma) + 
+   theme(legend.position = "right")
+```
+
+![Image of visualization due to github errors with packages](..\images\Tidy%20Tuesday\2018-04-02\viz3.png)
+
+### Reflection for today's visualizations
+
+These 2 visualizations were quite challenging to reach too. I think that's due to some things I didn't realize before working towards them.
+
+1.  For one, I didn't think much about the avg tuition being a discrete variable which unsurprisingly would cause trouble with scale for the visualization. Once I realized that and properly adjust the variable to be continuous, that problem was fixed!
+2.  The other issue I had was from working on tidying up the data, after recently learning about pivoting. I recognize though the usefulness of pivoting as earlier I didn't even think about how the years would actually be more appropriate as values in a cell rather than as a column as a variable.
+3.  I also had to look up a lot of the functions for tidying up data. I'm currently taking some time to get understand the functions and arguments I used for the visualizations! 📘📘📘
+(some of those functions include `scale_fill_viridis_c` for a more colorblind friendly scale, using `scales::comma` to add commas to the scale values and of course, the `usmap` package for visualizations with a map)
+
+## Next steps #2
+
+What do I plan on doing for the last visualization?
+
+I saw another person, [Jen Richmond](https://github.com/jenrichmond) create some awesome `usmap` visualizations as well! Especially interesting is the graph at the bottom of the [post](http://jenrichmond.rbind.io/post/2021-10-13-making-maps-with-r/), which consists of a really awesome gif visualization capturing the yearly change of nurses hourly wages and I'd like to apply that to my current visualization too! So, up next I'll be trying to learn how to do that from her post and take some time reflecting and detailing the process, and what I learned from doing it.

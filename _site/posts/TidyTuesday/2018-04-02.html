@@ -151,8 +151,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#ideas-for-dataset" id="toc-ideas-for-dataset" class="nav-link active" data-scroll-target="#ideas-for-dataset">Ideas for dataset</a>
+  <ul class="collapse">
+  <li><a href="#visualization-1" id="toc-visualization-1" class="nav-link" data-scroll-target="#visualization-1">Visualization 1</a>
+  <ul class="collapse">
+  <li><a href="#reflection-for-todays-visualizations" id="toc-reflection-for-todays-visualizations" class="nav-link" data-scroll-target="#reflection-for-todays-visualizations">Reflection for today’s visualizations</a></li>
+  </ul></li>
+  <li><a href="#visualizations-2-3-plus-next-steps" id="toc-visualizations-2-3-plus-next-steps" class="nav-link" data-scroll-target="#visualizations-2-3-plus-next-steps">Visualizations 2 &amp; 3, Plus next steps</a>
+  <ul class="collapse">
+  <li><a href="#reflection-for-todays-visualizations-1" id="toc-reflection-for-todays-visualizations-1" class="nav-link" data-scroll-target="#reflection-for-todays-visualizations-1">Reflection for today’s visualizations</a></li>
+  </ul></li>
+  <li><a href="#next-steps-2" id="toc-next-steps-2" class="nav-link" data-scroll-target="#next-steps-2">Next steps #2</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -197,11 +214,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><em>Note that the date following the post title is from when the dataset was added to</em> <a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday</a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>Note that the date following the post title is from when the dataset was added to</em> <a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday</a>.<br>
+You can find the dataset I used <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2018/2018-04-02/us_avg_tuition.xlsx">here</a> (2018-04-02).</p>
+</div>
+</div>
 <p><img src="..\images\college-library.jpg" class="img-fluid"></p>
+<section id="ideas-for-dataset" class="level1">
+<h1>Ideas for dataset</h1>
 <p>Things you could do with this kind of data:</p>
 <ul>
-<li>Have a US country chart with the cost of tuition scaled by color (source has already done this, so it would be a good learning experience)
+<li>Have a US country chart with the cost of tuition scaled by color (source has already done this, but it would be a good learning experience anyways!)
 <ul>
 <li>This could also be interactive to see by year if possible</li>
 </ul></li>
@@ -213,21 +245,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Interactive table/viz comparing states with each other</li>
 <li>Line graph also comparing states (interactive); 50 states would be too much maybe?</li>
 </ul>
-<p>Next, I should decide which are simpler graphs for me to do.</p>
-<p>Imported the data below and created my first visualization:</p>
+<section id="visualization-1" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-1">Visualization 1</h2>
+<p>Below, I imported the data below and created my first visualization:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/us_avg_tuition.csv"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#reamed column from "State" to "state" as usmaps won't recognize the column otherwise.</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> avg_us_tuition <span class="sc">|&gt;</span> </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">state =</span> <span class="st">"State"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg_us_tuition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/us_avg_tuition.csv"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#reamed column from "State" to "state" as usmaps won't recognize the column otherwise.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> avg_us_tuition <span class="sc">|&gt;</span> </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">state =</span> <span class="st">"State"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg_us_tuition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       state X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
 1    Alabama   $5,683   $5,841   $5,753   $6,008   $6,475   $7,189   $8,071
@@ -246,28 +289,172 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a visualization with usmap:</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>usmap<span class="sc">::</span><span class="fu">plot_usmap</span>(<span class="at">data =</span> avg_us_tuition, <span class="at">values =</span> <span class="st">"X2004.05"</span>) <span class="sc">+</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Tuitions by State in 2004-2005"</span>, <span class="at">subtitle =</span> <span class="st">"This data is from #the tidy tuesday dataset which consists of multiple years (2004 all the way to #2015."</span>) <span class="sc">+</span> </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">type =</span> <span class="st">"gradient"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>usmap<span class="sc">::</span><span class="fu">plot_usmap</span>(<span class="at">data =</span> avg_us_tuition, <span class="at">values =</span> <span class="st">"X2004.05"</span>) <span class="sc">+</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Tuitions by State in 2004-2005"</span>, <span class="at">subtitle =</span> <span class="st">"This data is from the tidy tuesday dataset which consists of multiple years (2004 all the way to 2015."</span>) <span class="sc">+</span> </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">type =</span> <span class="st">"gradient"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="..\images\Tidy Tuesday\2018-04-02\viz1.png" class="img-fluid figure-img"></p>
+<p><img src="..\images\Tidy Tuesday\2018-04-02\viz1_OLD.png" class="img-fluid figure-img"></p>
 <figcaption>Image of visualization due to github errors with packages</figcaption>
 </figure>
 </div>
+<section id="reflection-for-todays-visualizations" class="level3">
+<h3 class="anchored" data-anchor-id="reflection-for-todays-visualizations">Reflection for today’s visualizations</h3>
 <p>Some takeaways after learning to plot a US Map graph:</p>
 <ol type="1">
 <li>The package <code>usmap</code>, is very handy for visualizations referencing states and comes with ggplot2 functionality (allowing you to use ggplot functions).</li>
 <li>The package requires a “state” column (case sensitive) in order to recognize a dataframe and build off of it.</li>
-<li>Currently the visualization isn’t great because each state has its own specific key. Additionally, the colors are not consistent.</li>
+<li>Currently the visualization isn’t great because each state has its own specific key. This makes the colors all over the place.</li>
 </ol>
-<p>Next steps:<br>
-Next, I should set a proper color scale for the various tuition costs to make the graph a lot cleaner.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Discrete vs Continuous
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>R is treating the avg US tuition as a discrete variable and I don’t want that! I’ll need to make it continous.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="visualizations-2-3-plus-next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="visualizations-2-3-plus-next-steps">Visualizations 2 &amp; 3, Plus next steps</h2>
+<p>Next, I should set a proper color scale for the various tuition costs to make the graph a lot cleaner. As you can see, it doesn’t actually graph the average US tuition on a scale, so I will need to modify the values slightly to do this.</p>
+<p>That means I will</p>
+<p>1. Need to pivot some values around (I want the year as values not variable)</p>
+<p>2. Need to apply continuous data for the avg. tuition so that I can use the scale.</p>
+<p>I also decided to reformat the years just to have the specific start year (rathar than 2004-2005 the new format would be 2004). Below you can find the r code doing that.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/us_avg_tuition.csv"</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#renamed column from "State" to "state" as usmaps won't recognize the column otherwise.</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>avg_us_tuition <span class="ot">&lt;-</span> avg_us_tuition <span class="sc">|&gt;</span> </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">state =</span> <span class="st">"State"</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(avg_us_tuition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       state X2004.05 X2005.06 X2006.07 X2007.08 X2008.09 X2009.10 X2010.11
+1    Alabama   $5,683   $5,841   $5,753   $6,008   $6,475   $7,189   $8,071
+2     Alaska   $4,328   $4,633   $4,919   $5,070   $5,075   $5,455   $5,759
+3    Arizona   $5,138   $5,416   $5,481   $5,682   $6,058   $7,263   $8,840
+4   Arkansas   $5,772   $6,082   $6,232   $6,415   $6,417   $6,627   $6,901
+5 California   $5,286   $5,528   $5,335   $5,672   $5,898   $7,259   $8,194
+6   Colorado   $4,704   $5,407   $5,596   $6,227   $6,284   $6,948   $7,748
+  X2011.12 X2012.13 X2013.14 X2014.15 X2015.16
+1   $8,452   $9,098   $9,359   $9,496   $9,751
+2   $5,762   $6,026   $6,012   $6,149   $6,571
+3   $9,967  $10,134  $10,296  $10,414  $10,646
+4   $7,029   $7,287   $7,408   $7,606   $7,867
+5   $9,436   $9,361   $9,274   $9,187   $9,270
+6   $8,316   $8,793   $9,293   $9,299   $9,748</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pivot dataframe (Year is a value and not a variable)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pivot_avg_us_tuition <span class="ot">&lt;-</span> avg_us_tuition <span class="sc">|&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">!</span>state,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"year"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"avg_tuition_cost"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#removing comma (not sure if necessary)</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>pivot_avg_us_tuition<span class="sc">$</span>avg_tuition_cost <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(pivot_avg_us_tuition<span class="sc">$</span>avg_tuition_cost, <span class="st">","</span>, <span class="st">""</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#regex to mutate the values of the year to be more readable (instead of X2004-05 rename it to 2004).</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">#and then make sure to save the result</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>pivot_avg_us_tuition <span class="ot">&lt;-</span> pivot_avg_us_tuition <span class="sc">|&gt;</span> </span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">str_extract</span>(year, <span class="st">"</span><span class="sc">\\</span><span class="st">d</span><span class="sc">\\</span><span class="st">d</span><span class="sc">\\</span><span class="st">d</span><span class="sc">\\</span><span class="st">d"</span>),</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_tuition_cost =</span> <span class="fu">str_extract</span>(avg_tuition_cost, <span class="st">"(?&lt;=</span><span class="sc">\\</span><span class="st">$).*"</span>)     </span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pivot_avg_us_tuition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  state   year  avg_tuition_cost
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;           
+1 Alabama 2004  5683            
+2 Alabama 2005  5841            
+3 Alabama 2006  5753            
+4 Alabama 2007  6008            
+5 Alabama 2008  6475            
+6 Alabama 2009  7189            </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pivot_avg_us_tuition[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(pivot_avg_us_tuition[<span class="dv">3</span>], as.numeric)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#grab the entries starting from year 2004 (to 2005)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>us_tuition_2004 <span class="ot">&lt;-</span> pivot_avg_us_tuition <span class="sc">|&gt;</span> </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="st">"2004"</span>) </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(us_tuition_2004)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  state      year  avg_tuition_cost
+  &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;
+1 Alabama    2004              5683
+2 Alaska     2004              4328
+3 Arizona    2004              5138
+4 Arkansas   2004              5772
+5 California 2004              5286
+6 Colorado   2004              4704</code></pre>
+</div>
+</div>
+<p>Now that the dataset looks tidied up, next I will try to plot the usmap again:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a visualization with usmap using a continuous scale:</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>usmap<span class="sc">::</span><span class="fu">plot_usmap</span>(<span class="at">data =</span> us_tuition_2004, <span class="at">values =</span> <span class="st">"avg_tuition_cost"</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Tuitions by State in 2004-2005"</span>, <span class="at">subtitle =</span> <span class="st">"This data is from the tidy tuesday dataset which consists of multiple years (2004 all the way to 2015."</span>) <span class="sc">+</span> </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">type =</span> <span class="st">"gradient"</span>, <span class="at">label =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images\Tidy Tuesday\2018-04-02\viz2.png" class="img-fluid figure-img"></p>
+<figcaption>Image of visualization due to github errors with packages</figcaption>
+</figure>
+</div>
+<p>Looks great now! 😃</p>
+<p>I also learned about a colorblind friendly scale which I tried to apply in a similar visualization and I liked it a bit more than the simple gradient I have above.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a visualization with usmap with viridis (colorblind friendly) continuous scale:</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a> usmap<span class="sc">::</span><span class="fu">plot_usmap</span>(<span class="at">data =</span> us_tuition_2004, <span class="at">values =</span> <span class="st">"avg_tuition_cost"</span>) <span class="sc">+</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Tuitions by State in 2004-2005"</span>, <span class="at">subtitle =</span> <span class="st">"This data is from the tidy tuesday dataset which consists of multiple years"</span>) <span class="sc">+</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">"Avg. US Tuition"</span>, <span class="at">label =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span> </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images\Tidy Tuesday\2018-04-02\viz3.png" class="img-fluid figure-img"></p>
+<figcaption>Image of visualization due to github errors with packages</figcaption>
+</figure>
+</div>
+<section id="reflection-for-todays-visualizations-1" class="level3">
+<h3 class="anchored" data-anchor-id="reflection-for-todays-visualizations-1">Reflection for today’s visualizations</h3>
+<p>These 2 visualizations were quite challenging to reach too. I think that’s due to some things I didn’t realize before working towards them.</p>
+<ol type="1">
+<li>For one, I didn’t think much about the avg tuition being a discrete variable which unsurprisingly would cause trouble with scale for the visualization. Once I realized that and properly adjust the variable to be continuous, that problem was fixed!</li>
+<li>The other issue I had was from working on tidying up the data, after recently learning about pivoting. I recognize though the usefulness of pivoting as earlier I didn’t even think about how the years would actually be more appropriate as values in a cell rather than as a column as a variable.</li>
+<li>I also had to look up a lot of the functions for tidying up data. I’m currently taking some time to get understand the functions and arguments I used for the visualizations! 📘📘📘 (some of those functions include <code>scale_fill_viridis_c</code> for a more colorblind friendly scale, using <code>scales::comma</code> to add commas to the scale values and of course, the <code>usmap</code> package for visualizations with a map)</li>
+</ol>
+</section>
+</section>
+<section id="next-steps-2" class="level2">
+<h2 class="anchored" data-anchor-id="next-steps-2">Next steps #2</h2>
+<p>What do I plan on doing for the last visualization?</p>
+<p>I saw another person, <a href="https://github.com/jenrichmond">Jen Richmond</a> create some awesome <code>usmap</code> visualizations as well! Especially interesting is the graph at the bottom of the <a href="http://jenrichmond.rbind.io/post/2021-10-13-making-maps-with-r/">post</a>, which consists of a really awesome gif visualization capturing the yearly change of nurses hourly wages and I’d like to apply that to my current visualization too! So, up next I’ll be trying to learn how to do that from her post and take some time reflecting and detailing the process, and what I learned from doing it.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

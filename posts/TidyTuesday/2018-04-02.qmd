@@ -48,6 +48,7 @@ knitr::kable(
   avg_us_tuition[1:10, 1:5]
 )
 ```
+
 *(table columns extend to 2014-2015)*
 
 ```{r}
@@ -118,12 +119,13 @@ pivot_avg_us_tuition$avg_tuition_cost <- str_replace_all(pivot_avg_us_tuition$av
 pivot_avg_us_tuition <- pivot_avg_us_tuition |> 
   mutate(
     year = str_extract(year, "\\d\\d\\d\\d"),
-    avg_tuition_cost = str_extract(avg_tuition_cost, "(?<=\\$).*")     
+    avg_tuition_cost = str_extract(avg_tuition_cost, "(?<=\\$).*") #?<= is a look behind regex function (in this case is "$")
   )
 head(pivot_avg_us_tuition)
 
 
 pivot_avg_us_tuition[3] <- lapply(pivot_avg_us_tuition[3], as.numeric)
+pivot_avg_us_tuition[2] <- lapply(pivot_avg_us_tuition[2], as.numeric)
 
 #grab the entries starting from year 2004 (to 2005)
 us_tuition_2004 <- pivot_avg_us_tuition |> 
@@ -181,3 +183,41 @@ These 2 visualizations were quite challenging to reach too. I think that's due t
 What do I plan on doing for the last visualization?
 
 I saw another person, [Jen Richmond](https://github.com/jenrichmond) create some awesome `usmap` visualizations as well! Especially interesting is the graph at the bottom of the [post](http://jenrichmond.rbind.io/post/2021-10-13-making-maps-with-r/), which consists of a really awesome gif visualization capturing the yearly change of nurses hourly wages and I'd like to apply that to my current visualization too! So, up next I'll be trying to learn how to do that from her post and take some time reflecting and detailing the process, and what I learned from doing it.
+
+So far what I've learned about making an animated gif graph over time from Jen's post is that the functionality is done easily through `gganimate`.
+
+```{r}
+#| eval: false
+#| output: false
+#| warning: false
+
+
+library(gganimate)
+library(ggplot2)
+library(ggeasy)
+
+
+#Almost the same as previous, except we will be transitioning the label (to show that the years are changing)
+plot <- usmap::plot_usmap(data = pivot_avg_us_tuition, values = "avg_tuition_cost") +
+  scale_fill_viridis_c(name = "Avg. US Tuition", label = scales::comma) + 
+   easy_move_legend(to = c("right")) + #these following 2 lines from Jen's post is to stylize the graph a bit
+   theme(panel.background = element_rect(colour = "black"))
+   #note how the resulting visualization has a black border and the position of the legend is to the right.
+
+
+#modify labels to transition (based on the year)
+transition <- plot +
+  labs(title = "US Tuitions by State each year {as.integer(frame_time)}") +
+  transition_time(year)
+
+#then we animate the plot 
+gif <- animate(transition, fps=8, renderer = gifski_renderer())
+
+#viewing the gif
+gif
+
+#And then finally, saving the file as a .gif
+anim_save(filename = "map_avg_tuition.gif")
+```
+
+![The resulting .gif](..\images\Tidy%20Tuesday\2018-04-02\map_avg_tuition.gif)

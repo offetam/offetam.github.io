@@ -446,7 +446,7 @@ Discrete vs Continuous
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>pivot_avg_us_tuition <span class="ot">&lt;-</span> pivot_avg_us_tuition <span class="sc">|&gt;</span> </span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">str_extract</span>(year, <span class="st">"</span><span class="sc">\\</span><span class="st">d</span><span class="sc">\\</span><span class="st">d</span><span class="sc">\\</span><span class="st">d</span><span class="sc">\\</span><span class="st">d"</span>),</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_tuition_cost =</span> <span class="fu">str_extract</span>(avg_tuition_cost, <span class="st">"(?&lt;=</span><span class="sc">\\</span><span class="st">$).*"</span>)     </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_tuition_cost =</span> <span class="fu">str_extract</span>(avg_tuition_cost, <span class="st">"(?&lt;=</span><span class="sc">\\</span><span class="st">$).*"</span>) <span class="co">#?&lt;= is a look behind regex function (in this case is "$")</span></span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pivot_avg_us_tuition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -461,22 +461,23 @@ Discrete vs Continuous
 6 Alabama 2009  7189            </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pivot_avg_us_tuition[<span class="dv">3</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(pivot_avg_us_tuition[<span class="dv">3</span>], as.numeric)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#grab the entries starting from year 2004 (to 2005)</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>us_tuition_2004 <span class="ot">&lt;-</span> pivot_avg_us_tuition <span class="sc">|&gt;</span> </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="st">"2004"</span>) </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(us_tuition_2004)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>pivot_avg_us_tuition[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(pivot_avg_us_tuition[<span class="dv">2</span>], as.numeric)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#grab the entries starting from year 2004 (to 2005)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>us_tuition_2004 <span class="ot">&lt;-</span> pivot_avg_us_tuition <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="st">"2004"</span>) </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(us_tuition_2004)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
-  state      year  avg_tuition_cost
-  &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;
-1 Alabama    2004              5683
-2 Alaska     2004              4328
-3 Arizona    2004              5138
-4 Arkansas   2004              5772
-5 California 2004              5286
-6 Colorado   2004              4704</code></pre>
+  state       year avg_tuition_cost
+  &lt;chr&gt;      &lt;dbl&gt;            &lt;dbl&gt;
+1 Alabama     2004             5683
+2 Alaska      2004             4328
+3 Arizona     2004             5138
+4 Arkansas    2004             5772
+5 California  2004             5286
+6 Colorado    2004             4704</code></pre>
 </div>
 </div>
 <p>Now that the dataset looks tidied up, next I will try to plot the usmap again:</p>
@@ -524,6 +525,41 @@ Discrete vs Continuous
 <h2 class="anchored" data-anchor-id="next-steps-2">Next steps #2</h2>
 <p>What do I plan on doing for the last visualization?</p>
 <p>I saw another person, <a href="https://github.com/jenrichmond">Jen Richmond</a> create some awesome <code>usmap</code> visualizations as well! Especially interesting is the graph at the bottom of the <a href="http://jenrichmond.rbind.io/post/2021-10-13-making-maps-with-r/">post</a>, which consists of a really awesome gif visualization capturing the yearly change of nurses hourly wages and I’d like to apply that to my current visualization too! So, up next I’ll be trying to learn how to do that from her post and take some time reflecting and detailing the process, and what I learned from doing it.</p>
+<p>So far what I’ve learned about making an animated gif graph over time from Jen’s post is that the functionality is done easily through <code>gganimate</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggeasy)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">#Almost the same as previous, except we will be transitioning the label (to show that the years are changing)</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> usmap<span class="sc">::</span><span class="fu">plot_usmap</span>(<span class="at">data =</span> pivot_avg_us_tuition, <span class="at">values =</span> <span class="st">"avg_tuition_cost"</span>) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">"Avg. US Tuition"</span>, <span class="at">label =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">easy_move_legend</span>(<span class="at">to =</span> <span class="fu">c</span>(<span class="st">"right"</span>)) <span class="sc">+</span> <span class="co">#these following 2 lines from Jen's post is to stylize the graph a bit</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">"black"</span>))</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>   <span class="co">#note how the resulting visualization has a black border and the position of the legend is to the right.</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co">#modify labels to transition (based on the year)</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>transition <span class="ot">&lt;-</span> plot <span class="sc">+</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"US Tuitions by State each year {as.integer(frame_time)}"</span>) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transition_time</span>(year)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="co">#then we animate the plot </span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>gif <span class="ot">&lt;-</span> <span class="fu">animate</span>(transition, <span class="at">fps=</span><span class="dv">8</span>, <span class="at">renderer =</span> <span class="fu">gifski_renderer</span>())</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co">#viewing the gif</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>gif</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="co">#And then finally, saving the file as a .gif</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="fu">anim_save</span>(<span class="at">filename =</span> <span class="st">"map_avg_tuition.gif"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images\Tidy Tuesday\2018-04-02\map_avg_tuition.gif" class="img-fluid figure-img"></p>
+<figcaption>The resulting .gif</figcaption>
+</figure>
+</div>
 
 
 </section>

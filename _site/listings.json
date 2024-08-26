@@ -3,7 +3,8 @@
     "listing": "/blog.html",
     "items": [
       "/posts/TidyTuesday/2018-04-02.html",
-      "/posts/TidyTuesday/date_here.html"
+      "/posts/TidyTuesday/date_here.html",
+      "/posts/Test/index.html"
     ]
   }
 ]

@@ -4,6 +4,8 @@ title: "Welcome!"
 
 ![Source: Miguel Á. Padriñán](posts/images/welcome.jpg){fig-align="center"}
 
-I will be using quarto as the website to share any data visualizations I make, typically through blog posts. You can find those posts on the header above or [here](/blog.html).
+I will be using Quarto as the website to share any data visualizations I make, typically through blog posts. You can find those posts on the header above or [**here**](/blog.html).
 
-The plan is to eventually use the main page for notes and exercises on the [R4DS](https://r4ds.hadley.nz/) book.
+::: callout-note
+The plan is to eventually use the main page for any notes/exercises on the [**R4DS**](https://r4ds.hadley.nz/) book but for now will be used to talk about some of the blog posts I think.
+:::

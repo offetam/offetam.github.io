@@ -1,9 +1,15 @@
 ---
 title: "About"
+about:
+  template: trestles
+  image: profile.png
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/offetam
 ---
 
-About this site
+Ethan Tam is a graduate of Hunter College, majoring in Computer Science. He enjoys writing about learning new tools and topics especially in cybersecurity and data science. When not learning and writing, he also enjoys anime and video games in his free time. 
 
-```{r}
-1 + 1
-```
+## Education
+Hunter College, New York | New York, NY BA in Computer Science | Aug 2018 - June 2022

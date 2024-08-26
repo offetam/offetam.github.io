@@ -39,14 +39,21 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "Ethan Tam is a graduate of Hunter College, majoring in Computer Science. He enjoys writing about learning new tools and topics especially in cybersecurity and data science. When not learning and writing, he also enjoys anime and video games in his free time."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "About",
+    "section": "Education",
+    "text": "Education\nHunter College, New York | New York, NY BA in Computer Science | Aug 2018 - June 2022"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Welcome!",
     "section": "",
-    "text": "Source: Miguel Á. Padriñán\n\n\nI will be using quarto as the website to share any data visualizations I make, typically through blog posts. You can find those posts on the header above or here.\nThe plan is to eventually use the main page for notes and exercises on the R4DS book."
+    "text": "Source: Miguel Á. Padriñán\n\n\nI will be using Quarto as the website to share any data visualizations I make, typically through blog posts. You can find those posts on the header above or here.\n\n\n\n\n\n\nNote\n\n\n\nThe plan is to eventually use the main page for any notes/exercises on the R4DS book but for now will be used to talk about some of the blog posts I think."
   },
   {
     "objectID": "posts/TidyTuesday/date_here.html",

@@ -14,20 +14,6 @@
     "text": "Education\nHunter College, New York | New York, NY BA in Computer Science | Aug 2018 - June 2022"
   },
   {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "myblog",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nTidy Tuesday - US Avg. Tuition (2018-04-02)\n\n\n\ntidytuesday\n\n\nanalysis\n\n\n\nDiscussing and making some visualizations on US Avg. Tuition\n\n\n\nEthan Tam\n\n\nAug 18, 2024\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome!",
-    "section": "",
-    "text": "Source: Miguel Á. Padriñán\n\n\nI will be using Quarto as the website to share any data visualizations I make, typically through blog posts. You can find those posts on the header above or here.\n\n\n\n\n\n\nNote\n\n\n\nThe plan is to eventually use the main page for any notes/exercises on the R4DS book but for now will be used to talk about some of the blog posts I think."
-  },
-  {
     "objectID": "posts/TidyTuesday/2018-04-02.html",
     "href": "posts/TidyTuesday/2018-04-02.html",
     "title": "Tidy Tuesday - US Avg. Tuition (2018-04-02)",
@@ -53,6 +39,27 @@
     "href": "posts/TidyTuesday/2018-04-02.html#next-steps-2",
     "title": "Tidy Tuesday - US Avg. Tuition (2018-04-02)",
     "section": "Next steps #2",
-    "text": "Next steps #2\nWhat do I plan on doing for the last visualization?\nI saw another person, Jen Richmond create some awesome usmap visualizations as well! Especially interesting is the graph at the bottom of the post, which consists of a really awesome gif visualization capturing the yearly change of nurses hourly wages and I’d like to apply that to my current visualization too! So, up next I’ll be trying to learn how to do that from her post and take some time reflecting and detailing the process, and what I learned from doing it.\nSo far what I’ve learned about making an animated gif graph over time from Jen’s post is that the functionality is done easily through gganimate.\n\nlibrary(gganimate)\nlibrary(ggplot2)\nlibrary(ggeasy)\n\n\n#Almost the same as previous, except we will be transitioning the label (to show that the years are changing)\nplot &lt;- usmap::plot_usmap(data = pivot_avg_us_tuition, values = \"avg_tuition_cost\") +\n  scale_fill_viridis_c(name = \"Avg. US Tuition\", label = scales::comma) + \n   easy_move_legend(to = c(\"right\")) + #these following 2 lines from Jen's post is to stylize the graph a bit\n   theme(panel.background = element_rect(colour = \"black\"))\n   #note how the resulting visualization has a black border and the position of the legend is to the right.\n\n\n#modify labels to transition (based on the year)\ntransition &lt;- plot +\n  labs(title = \"US Tuitions by State each year {as.integer(frame_time)}\") +\n  transition_time(year)\n\n#then we animate the plot \ngif &lt;- animate(transition, fps=8, renderer = gifski_renderer())\n\n#viewing the gif\ngif\n\n#And then finally, saving the file as a .gif\nanim_save(filename = \"map_avg_tuition.gif\")\n\n\n\n\nThe resulting .gif"
+    "text": "Next steps #2\nWhat do I plan on doing for the last visualization?\nI saw another person, Jen Richmond create some awesome usmap visualizations as well! Especially interesting is the graph at the bottom of the post, which consists of a really awesome gif visualization capturing the yearly change of nurses hourly wages and I’d like to apply that to my current visualization too! So, up next I’ll be trying to learn how to do that from her post and take some time reflecting and detailing the process, and what I learned from doing it.\nSo far what I’ve learned about making an animated gif graph over time from Jen’s post is that the functionality is done easily through gganimate.\n\nlibrary(gganimate)\nlibrary(ggplot2)\nlibrary(ggeasy)\n\n\n#Almost the same as previous, except we will be transitioning the label (to show that the years are changing)\nplot &lt;- usmap::plot_usmap(data = pivot_avg_us_tuition, values = \"avg_tuition_cost\") +\n  scale_fill_viridis_c(name = \"Avg. US Tuition\", label = scales::comma) + \n   easy_move_legend(to = c(\"right\")) + #these following 2 lines from Jen's post is to stylize the graph a bit\n   theme(panel.background = element_rect(colour = \"black\"))\n   #note how the resulting visualization has a black border and the position of the legend is to the right.\n\n\n#modify labels to transition (based on the year)\ntransition &lt;- plot +\n  labs(title = \"US Tuitions by State each year {as.integer(frame_time)}\") +\n  transition_time(year)\n\n#then we animate the plot \ngif &lt;- animate(transition, fps=8, renderer = gifski_renderer())\n\n#viewing the gif\ngif\n\n#And then finally, saving the file as a .gif\nanim_save(filename = \"map_avg_tuition.gif\")\n\n\n\n\nThe resulting .gif\n\n\n\nReflection for today’s visualizations"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome!",
+    "section": "",
+    "text": "Source: Miguel Á. Padriñán\n\n\nI will be using Quarto as the website to share any data visualizations I make, typically through blog posts. You can find those posts on the header above or here.\n\n\n\n\n\n\nNote\n\n\n\nThe plan is to eventually use the main page for any notes/exercises on the R4DS book but for now will be used to talk about some of the blog posts I think."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "myblog",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\nTidy Tuesday - NFL salary (2018-04-09)\n\n\n\ntidytuesday\n\n\nanalysis\n\n\n\nDiscussing and making some visualizations on NFL Salary\n\n\n\nEthan Tam\n\n\nOct 3, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTidy Tuesday - US Avg. Tuition (2018-04-02)\n\n\n\ntidytuesday\n\n\nanalysis\n\n\n\nDiscussing and making some visualizations on US Avg. Tuition\n\n\n\nEthan Tam\n\n\nAug 18, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "posts/TidyTuesday/2018-04-09.html",
+    "href": "posts/TidyTuesday/2018-04-09.html",
+    "title": "Tidy Tuesday - NFL salary (2018-04-09)",
+    "section": "",
+    "text": "Note\n\n\n\nNote that the date following the post title is from when the dataset was added to Tidy Tuesday.\nYou can find the dataset I used for this week here (2018-04-09).\n\n\n\n\n\nSource: Bk Aguilar\n\n\n\nIdeas for dataset\n\nAvg. salary of various NFL players by positions\n\nA line graph showing the change over 2011 to 2018.\n\nBox plot of salary for each position over the years\nThen perhaps after, figure out if I can learn to make the graphs dynamic by letting user compare\n\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(ggplot2)\n\nnfl_salary &lt;- read.csv(\"datasets/nfl_salary.csv\")\nhead(nfl_salary)\n\n  year Cornerback Defensive.Lineman Linebacker Offensive.Lineman Quarterback\n1 2011   11265916          17818000   16420000          15960000    17228125\n2 2011   11000000          16200000   15623000          12800000    16000000\n3 2011   10000000          12476000   11825000          11767500    14400000\n4 2011   10000000          11904706   10083333          10358200    14100000\n5 2011   10000000          11762782   10020000          10000000    13510000\n6 2011    9244117          11340000    8150000           9859166    13250000\n  Running.Back  Safety Special.Teamer Tight.End Wide.Receiver\n1     12955000 8871428        4300000   8734375      16250000\n2     10873833 8787500        3725000   8591000      14175000\n3      9479000 8282500        3556176   8290000      11424000\n4      7700000 8000000        3500000   7723333      11415000\n5      7500000 7804333        3250000   6974666      10800000\n6      7033000 7652700        3225000   6133333       9993750"
   }
 ]

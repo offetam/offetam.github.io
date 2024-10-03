@@ -31,3 +31,23 @@ nfl_salary <- read.csv("datasets/nfl_salary.csv")
 head(nfl_salary)
 
 ```
+
+# Visualization 1
+Let's try to find the avg. salary for a quarterback in 2011, then per year in a line graph:
+
+```{r}
+
+#filter by year 2011, then by quarterback
+nfl_salary_2011 <- nfl_salary |>  
+  filter(year == 2011) |> 
+  select(Quarterback)
+nfl_salary_2011
+
+avg_qb_salary_2011 <- nfl_salary_2011 |> 
+  summarise(mean_qb_salary_2011 = mean(Quarterback, na.rm = TRUE)) #remove the NA entries otherwise mean is NA.
+
+avg_qb_salary_2011
+```
+Here I filtered the rows to only be from the year 2011 and then selected the quarterback column. It's sort of implied that I took the 2011 row from filtering it earlier.
+
+Then I used summarize to create the column that is the mean of qb salary in 2011!

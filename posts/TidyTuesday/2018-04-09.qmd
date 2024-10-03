@@ -1,0 +1,33 @@
+---
+title: "Tidy Tuesday - NFL salary (2018-04-09)"
+description: "Discussing and making some visualizations on NFL Salary"
+author: "Ethan Tam"
+date: "10/3/2024"
+categories:
+  - tidytuesday
+  - analysis
+---
+
+::: callout-note
+*Note that the date following the post title is from when the dataset was added to* [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday).\
+You can find the dataset I used for this week [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2018/2018-04-09/nfl_salary.xlsx) (2018-04-09).
+:::
+
+ ![Source: Bk Aguilar](..\images\Tidy%20Tuesday\2018-04-09\basketball-stock.jpg)
+
+# Ideas for dataset
+
+-   Avg. salary of various NFL players by positions
+    -   A line graph showing the change over 2011 to 2018.
+-   Box plot of salary for each position over the years
+-   Then perhaps after, figure out if I can learn to make the graphs dynamic by letting user compare
+
+```{r}
+
+library(tidyverse)
+library(ggplot2)
+
+nfl_salary <- read.csv("datasets/nfl_salary.csv")
+head(nfl_salary)
+
+```

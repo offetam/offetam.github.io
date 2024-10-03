@@ -221,3 +221,7 @@ anim_save(filename = "map_avg_tuition.gif")
 ```
 
 ![The resulting .gif](..\images\Tidy%20Tuesday\2018-04-02\map_avg_tuition.gif)
+
+
+### Reflection for today's visualizations
+

@@ -157,6 +157,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#ideas-for-dataset" id="toc-ideas-for-dataset" class="nav-link active" data-scroll-target="#ideas-for-dataset">Ideas for dataset</a></li>
+  <li><a href="#visualization-1" id="toc-visualization-1" class="nav-link" data-scroll-target="#visualization-1">Visualization 1</a></li>
   </ul>
 </nav>
     </div>
@@ -268,6 +269,130 @@ You can find the dataset I used for this week <a href="https://github.com/rforda
 6      7033000 7652700        3225000   6133333       9993750</code></pre>
 </div>
 </div>
+</section>
+<section id="visualization-1" class="level1">
+<h1>Visualization 1</h1>
+<p>Let’s try to find the avg. salary for a quarterback in 2011, then per year in a line graph:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filter by year 2011, then by quarterback</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>nfl_salary_2011 <span class="ot">&lt;-</span> nfl_salary <span class="sc">|&gt;</span>  </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2011</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Quarterback)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>nfl_salary_2011</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Quarterback
+1      17228125
+2      16000000
+3      14400000
+4      14100000
+5      13510000
+6      13250000
+7      12950000
+8      12574700
+9      12465000
+10     11320000
+11      9500000
+12      9000000
+13      8879000
+14      7750000
+15      7075000
+16      6410499
+17      6123750
+18      5725000
+19      5610000
+20      5387500
+21      5050000
+22      5000000
+23      4900000
+24      4600000
+25      4004636
+26      4000000
+27      4000000
+28      4000000
+29      3466667
+30      3250000
+31      3250000
+32      3250000
+33      3200000
+34      3050000
+35      2750000
+36      2750000
+37      2740000
+38      2616667
+39      2500000
+40      2500000
+41      2288364
+42      2273225
+43      2270000
+44      2182118
+45      2111875
+46      2000000
+47      2000000
+48      1847036
+49      1800000
+50      1250000
+51      1200000
+52      1200000
+53      1150000
+54       948036
+55       935000
+56       931691
+57       887500
+58       810000
+59       771500
+60       735000
+61       727500
+62       700000
+63       650000
+64       637750
+65       631375
+66       616043
+67       613000
+68       547750
+69       535969
+70       529166
+71       525000
+72       525000
+73       525000
+74       525000
+75       525000
+76       525000
+77       521696
+78       495412
+79       480000
+80       480000
+81       478556
+82       473128
+83       465000
+84       455000
+85       450000
+86       450000
+87       427763
+88       421250
+89       417215
+90       401327
+91       391288
+92       375333
+93       375000
+94       330000
+95       330000
+96       154412
+97        44117
+98           NA
+99           NA
+100          NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>avg_qb_salary_2011 <span class="ot">&lt;-</span> nfl_salary_2011 <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_qb_salary_2011 =</span> <span class="fu">mean</span>(Quarterback, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co">#remove the NA entries otherwise mean is NA.</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>avg_qb_salary_2011</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean_qb_salary_2011
+1             3376113</code></pre>
+</div>
+</div>
+<p>Here I filtered the rows to only be from the year 2011 and then selected the quarterback column. It’s sort of implied that I took the 2011 row from filtering it earlier.</p>
+<p>Then I used summarize to create the column that is the mean of qb salary in 2011!</p>
 
 
 </section>

@@ -9,8 +9,9 @@ about:
       href: https://github.com/offetam
 ---
 
-Ethan Tam is a graduate of Hunter College, majoring in Computer Science. He enjoys writing about learning new tools and topics especially in cybersecurity and data science. When not learning and writing, he also enjoys anime and video games in his free time. 
+Ethan Tam graduated Hunter College with a Bachelor's degree, majoring in Computer Science. He enjoys writing about learning new tools and topics especially in cybersecurity and data science. When not learning and writing, he also enjoys anime and video games in his free time.
 
 ## Education
-**Hunter College, New York** | New York, NY 
-BA in Computer Science | Aug 2018 - June 2022
+
+**Hunter College, New York** \| New York, NY \|\
+BA in Computer Science \| Aug 2018 - June 2022

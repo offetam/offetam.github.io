@@ -6,11 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Ethan Tam">
-<meta name="dcterms.date" content="2024-10-03">
-<meta name="description" content="Discussing and making some visualizations on NFL Salary">
 
-<title>Tidy Tuesday - NFL salary (2018-04-09) – offetam.github.io</title>
+<title>Tableau E-Learning – offetam.github.io</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -151,50 +114,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#ideas-for-dataset" id="toc-ideas-for-dataset" class="nav-link active" data-scroll-target="#ideas-for-dataset">Ideas for dataset</a></li>
-  <li><a href="#visualization-1" id="toc-visualization-1" class="nav-link" data-scroll-target="#visualization-1">Visualization 1</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tidy Tuesday - NFL salary (2018-04-09)</h1>
-  <div class="quarto-categories">
-    <div class="quarto-category">tidytuesday</div>
-    <div class="quarto-category">analysis</div>
-  </div>
-  </div>
-
-<div>
-  <div class="description">
-    Discussing and making some visualizations on NFL Salary
-  </div>
+<h1 class="title">Tableau E-Learning</h1>
 </div>
+
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Ethan Tam </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 3, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -204,238 +139,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><em>Note that the date following the post title is from when the dataset was added to</em> <a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday</a>.<br>
-You can find the dataset I used for this week <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2018/2018-04-09/nfl_salary.xlsx">here</a> (2018-04-09).</p>
-</div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="..\images\Tidy Tuesday\2018-04-09\basketball-stock.jpg" class="img-fluid figure-img"></p>
-<figcaption>Source: Bk Aguilar</figcaption>
-</figure>
-</div>
-<section id="ideas-for-dataset" class="level1">
-<h1>Ideas for dataset</h1>
-<ul>
-<li>Avg. salary of various NFL players by positions
-<ul>
-<li>A line graph showing the change over 2011 to 2018.</li>
-</ul></li>
-<li>Box plot of salary for each position over the years</li>
-<li>Then perhaps after, figure out if I can learn to make the graphs dynamic by letting user compare</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.1     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>nfl_salary <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"datasets/nfl_salary.csv"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(nfl_salary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  year Cornerback Defensive.Lineman Linebacker Offensive.Lineman Quarterback
-1 2011   11265916          17818000   16420000          15960000    17228125
-2 2011   11000000          16200000   15623000          12800000    16000000
-3 2011   10000000          12476000   11825000          11767500    14400000
-4 2011   10000000          11904706   10083333          10358200    14100000
-5 2011   10000000          11762782   10020000          10000000    13510000
-6 2011    9244117          11340000    8150000           9859166    13250000
-  Running.Back  Safety Special.Teamer Tight.End Wide.Receiver
-1     12955000 8871428        4300000   8734375      16250000
-2     10873833 8787500        3725000   8591000      14175000
-3      9479000 8282500        3556176   8290000      11424000
-4      7700000 8000000        3500000   7723333      11415000
-5      7500000 7804333        3250000   6974666      10800000
-6      7033000 7652700        3225000   6133333       9993750</code></pre>
-</div>
-</div>
-</section>
-<section id="visualization-1" class="level1">
-<h1>Visualization 1</h1>
-<p>Let’s try to find the avg. salary for a quarterback in 2011, then per year in a line graph:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#filter by year 2011, then by quarterback</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>nfl_salary_2011 <span class="ot">&lt;-</span> nfl_salary <span class="sc">|&gt;</span>  </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2011</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Quarterback)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>nfl_salary_2011</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    Quarterback
-1      17228125
-2      16000000
-3      14400000
-4      14100000
-5      13510000
-6      13250000
-7      12950000
-8      12574700
-9      12465000
-10     11320000
-11      9500000
-12      9000000
-13      8879000
-14      7750000
-15      7075000
-16      6410499
-17      6123750
-18      5725000
-19      5610000
-20      5387500
-21      5050000
-22      5000000
-23      4900000
-24      4600000
-25      4004636
-26      4000000
-27      4000000
-28      4000000
-29      3466667
-30      3250000
-31      3250000
-32      3250000
-33      3200000
-34      3050000
-35      2750000
-36      2750000
-37      2740000
-38      2616667
-39      2500000
-40      2500000
-41      2288364
-42      2273225
-43      2270000
-44      2182118
-45      2111875
-46      2000000
-47      2000000
-48      1847036
-49      1800000
-50      1250000
-51      1200000
-52      1200000
-53      1150000
-54       948036
-55       935000
-56       931691
-57       887500
-58       810000
-59       771500
-60       735000
-61       727500
-62       700000
-63       650000
-64       637750
-65       631375
-66       616043
-67       613000
-68       547750
-69       535969
-70       529166
-71       525000
-72       525000
-73       525000
-74       525000
-75       525000
-76       525000
-77       521696
-78       495412
-79       480000
-80       480000
-81       478556
-82       473128
-83       465000
-84       455000
-85       450000
-86       450000
-87       427763
-88       421250
-89       417215
-90       401327
-91       391288
-92       375333
-93       375000
-94       330000
-95       330000
-96       154412
-97        44117
-98           NA
-99           NA
-100          NA</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>avg_qb_salary_2011 <span class="ot">&lt;-</span> nfl_salary_2011 <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_qb_salary_2011 =</span> <span class="fu">mean</span>(Quarterback, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co">#remove the NA entries otherwise mean is NA.</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>avg_qb_salary_2011</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  mean_qb_salary_2011
-1             3376113</code></pre>
-</div>
-</div>
-<p>Here I filtered the rows to only be from the year 2011 and then selected the quarterback column. It’s sort of implied that I took the 2011 row from filtering it earlier.</p>
-<p>Then I used summarize to create the column that is the mean of qb salary in 2011! The salary is about $3.3 million for the average quarterback. Interesting information, but I think a box plot will be really good to emphasize the range and the variance in this dataset.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#create a boxplot, grouped by year.</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>nfl_salary <span class="sc">|&gt;</span> <span class="fu">group_by</span>(year) <span class="sc">|&gt;</span> </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, Quarterback)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 800 × 2
-# Groups:   year [8]
-    year Quarterback
-   &lt;int&gt;       &lt;int&gt;
- 1  2011    17228125
- 2  2011    16000000
- 3  2011    14400000
- 4  2011    14100000
- 5  2011    13510000
- 6  2011    13250000
- 7  2011    12950000
- 8  2011    12574700
- 9  2011    12465000
-10  2011    11320000
-# ℹ 790 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(nfl_salary, <span class="fu">aes</span>(<span class="at">group =</span> year, year, Quarterback)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="co">#scales as comma instead of scientific notation</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 55 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="2018-04-09_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Some interesting stuff here… A LOT of outliers! Most QB’s make under the 10m range, but there are many who make well north of that!</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

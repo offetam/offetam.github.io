@@ -50,4 +50,21 @@ avg_qb_salary_2011
 ```
 Here I filtered the rows to only be from the year 2011 and then selected the quarterback column. It's sort of implied that I took the 2011 row from filtering it earlier.
 
-Then I used summarize to create the column that is the mean of qb salary in 2011!
+Then I used summarize to create the column that is the mean of qb salary in 2011! The salary is about $3.3 million for the average quarterback. Interesting information, but I think a box plot will be really good to emphasize the range and the variance in this dataset.
+
+```{r}
+
+#create a boxplot, grouped by year.
+
+
+
+nfl_salary |> group_by(year) |> 
+  select(year, Quarterback)
+
+ggplot(nfl_salary, aes(group = year, year, Quarterback)) +
+  geom_boxplot() + 
+  scale_y_continuous(labels = scales::comma) #scales as comma instead of scientific notation
+
+```
+
+Some interesting stuff here... A LOT of outliers! Most QB's make under the 10m range, but there are many who make well north of that!

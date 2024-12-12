@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://offetam.github.io/about.html</loc>
-    <lastmod>2024-10-03T20:42:33.379Z</lastmod>
-  </url>
-  <url>
-    <loc>https://offetam.github.io/posts/TidyTuesday/2018-04-02.html</loc>
-    <lastmod>2024-10-03T20:42:33.379Z</lastmod>
+    <loc>https://offetam.github.io/posts/TidyTuesday/2018-04-09.html</loc>
+    <lastmod>2024-12-12T16:36:19.015Z</lastmod>
   </url>
   <url>
     <loc>https://offetam.github.io/index.html</loc>
-    <lastmod>2024-10-03T20:42:33.379Z</lastmod>
+    <lastmod>2024-12-12T16:36:19.015Z</lastmod>
+  </url>
+  <url>
+    <loc>https://offetam.github.io/about.html</loc>
+    <lastmod>2024-12-12T16:36:19.015Z</lastmod>
+  </url>
+  <url>
+    <loc>https://offetam.github.io/posts/TidyTuesday/2018-04-02.html</loc>
+    <lastmod>2024-12-12T16:36:19.015Z</lastmod>
   </url>
   <url>
     <loc>https://offetam.github.io/blog.html</loc>
-    <lastmod>2024-10-03T20:42:33.379Z</lastmod>
-  </url>
-  <url>
-    <loc>https://offetam.github.io/posts/TidyTuesday/2018-04-09.html</loc>
-    <lastmod>2024-10-03T20:42:33.379Z</lastmod>
+    <lastmod>2024-12-12T16:36:19.015Z</lastmod>
   </url>
 </urlset>
